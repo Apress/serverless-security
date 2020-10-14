@@ -1,0 +1,19 @@
+service: ecommerce-ch8-gen-envvar
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  deploymentBucket:
+    serverSideEncryption: AES256
+
+functions:
+  chargeCC:
+    handler: src/functions/chargeCC.handler
+    events:
+      - http:
+          method: post
+          path: chargeCC
+    environment:
+      API_KEY: ${env:API_KEY}

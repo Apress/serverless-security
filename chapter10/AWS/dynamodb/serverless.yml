@@ -1,0 +1,42 @@
+service: ssbook-ch10-ddb
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+ 
+resources:
+  Resources:
+    DataTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        # see AWS CloudFormation reference for a list of all the properties
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html
+        AttributeDefinitions:
+          - AttributeName: Id
+            AttributeType: S
+#        BillingMode: String
+#        GlobalSecondaryIndexes:
+#          - GlobalSecondaryIndex
+        KeySchema:
+          - AttributeName: Id
+            KeyType: HASH
+#        LocalSecondaryIndexes:
+#          - LocalSecondaryIndex
+#        PointInTimeRecoverySpecification:
+#          PointInTimeRecoverySpecification
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        SSESpecification:
+          KMSMasterKeyId: arn:aws:kms:us-east-1:123456789012:key/aa000a00-a0aa-0a00-000a-0000a00a1a11
+          SSEEnabled: true
+          SSEType: KMS
+#        StreamSpecification:
+#          StreamSpecification
+        TableName: ${self:service}-${self:provider.region}-data
+#        Tags:
+#          - Tag
+        TimeToLiveSpecification:
+          AttributeName: Ttl
+          Enabled: true

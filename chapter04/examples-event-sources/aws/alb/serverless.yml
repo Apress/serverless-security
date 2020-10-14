@@ -1,0 +1,19 @@
+service: eCommerceChapter04ExamplesAlb
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+
+functions:
+  function1:
+    handler: src/function1.handler
+    events:
+      # honeypot for an existing ALB
+      - alb:
+          listenerArn: arn:aws:elasticloadbalancing:us-east-1:12345678912:listener/app/back-office-system/12ab3c456d7e8912/
+          priority: 1
+          conditions:
+            path: /wp-admin

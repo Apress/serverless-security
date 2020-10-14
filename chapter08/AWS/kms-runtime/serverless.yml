@@ -1,0 +1,26 @@
+service: ecommerce-ch8-kms-runtime
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  deploymentBucket:
+    serverSideEncryption: AES256
+
+functions:
+  chargeCC:
+    handler: src/functions/chargeCC.handler
+    events:
+      - http:
+          method: POST
+          path: chargeCC
+    environment:
+      ENCRYPTED_API_KEY: AQICAHgC7mTtcEJQ1Y3mcIte25SbVsB/yZnL7UzG0fzWgHVJoAFSxCxpGJ6cyeLQl9J7s7+bAAAAgzCBgAYJKoZIhvcNAQcGoHMwcQIBADBsBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDP78crOWYO1h6P0U8QIBEIA/VIZuslMvhwB9M8KE7ONKaqoYmQUgRwQivT63SZuA2BOifQg7uvbN2QgNEHo3VC0HfJKO+mS+bFXWHC1qJtiB
+    iamRoleStatements:
+      - Effect: Allow
+        Action: kms:Decrypt
+        Resource: arn:aws:kms:${self:provider.region}:*:key/*
+
+plugins:
+  - serverless-iam-roles-per-function

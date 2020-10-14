@@ -1,0 +1,20 @@
+service: eCommerceChapter04ExamplesStreams
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+
+functions:
+  function1:
+    handler: src/function1.handler
+    events:
+      # use an existing DynamoDB stream ARN
+      - stream: arn:aws:dynamodb:us-east-1:123456789012:table/eCommerce-users/stream/2019-08-09T00:22:58.806
+  function2:
+    handler: src/function2.handler
+    events:
+      # use an existing Kinesis stream ARN
+      - stream: arn:aws:kinesis:us-east-1:123456789012:stream/eCommerce-saleTransactions

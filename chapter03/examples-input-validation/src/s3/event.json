@@ -1,0 +1,38 @@
+{
+    "Records": [
+        {
+            "eventVersion": "2.1",
+            "eventSource": "aws:s3",
+            "awsRegion": "us-east-1",
+            "eventTime": "2019-07-26T15:09:49.048Z",
+            "eventName": "ObjectCreated:Put",
+            "userIdentity": {
+                "principalId": "AWS:AIDAI3AHZGXXRK5OGGJY2"
+            },
+            "requestParameters": {
+                "sourceIPAddress": "123.456.789.012"
+            },
+            "responseElements": {
+                "x-amz-request-id": "3FDF063B641C4D99",
+                "x-amz-id-2": "/X9xQ3pGp0xffywT7N03zXR+N9untTXfo1pd58on8HU3yYTQ/BOirBmGcx4gj6adGSfAtufjipA="
+            },
+            "s3": {
+                "s3SchemaVersion": "1.0",
+                "configurationId": "29f14bab-caef-4064-bec0-08ac63a56cca",
+                "bucket": {
+                    "name": "chapter03-examples-input-validation-dev-uploads",
+                    "ownerIdentity": {
+                        "principalId": "A3LB0EHN6H4N04"
+                    },
+                    "arn": "arn:aws:s3:::chapter03-examples-input-validation-dev-uploads"
+                },
+                "object": {
+                    "key": "istockphoto-165759108-170667a.jpg",
+                    "size": 128092,
+                    "eTag": "d4021e5cb9c78bf0ec66fc14eac4d656",
+                    "sequencer": "005D3B17BCF725692C"
+                }
+            }
+        }
+    ]
+}

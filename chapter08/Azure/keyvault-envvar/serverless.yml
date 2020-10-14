@@ -1,0 +1,26 @@
+service: ecommerce-ch8-keyvault-envvar
+
+provider:
+  name: azure
+  region: West US 2
+  runtime: nodejs10.x
+  environment:
+    API_KEY: placeholder
+
+plugins:
+  - serverless-azure-functions
+
+package:
+  exclude:
+    - local.settings.json
+    - .vscode/**
+
+functions:
+  hello:
+    handler: src/handlers/chargeCC.handler
+    events:
+      - http: true
+        x-azure-settings:
+          methods:
+            - GET
+          authLevel: anonymous

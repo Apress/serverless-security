@@ -1,0 +1,26 @@
+service: ecommerce-ch8-secretmanager-runtime
+
+provider:
+  name: google
+  stage: dev
+  runtime: nodejs10
+  region: us-central1
+  project: serverlesssecuritybook
+  credentials: ~/.gcloud/keyfile.json
+
+plugins:
+  - serverless-google-cloudfunctions
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+functions:
+  first:
+    handler: chargeCC
+    events:
+      - http: path
+    environment:
+      SECRET_NAME: projects/123456789012/secrets/apiKey/versions/latest

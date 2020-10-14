@@ -1,0 +1,20 @@
+service: ssbook-ch10-lambda
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+  logRetentionInDays: 1
+
+functions:
+  myFunction:
+    handler: myFunction.handler
+    awsKmsKeyArn: arn:aws:kms:us-east-1:123456789012:key/aa000a00-a0aa-0a00-000a-0000a00a1a11
+    environment:
+      SECRET_NAME: secretValue
+    events:
+      - http:
+          path: myFunction
+          method: get

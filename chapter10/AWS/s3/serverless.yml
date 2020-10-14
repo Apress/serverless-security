@@ -1,0 +1,33 @@
+service: ssbook-ch10-s3
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  
+resources:
+  Resources:
+    DataS3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        # see AWS CloudFormation reference for a list of all the properties
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
+        AccelerateConfiguration:
+          AccelerationStatus: Enabled
+        AccessControl: Private
+        BucketEncryption:
+          ServerSideEncryptionConfiguration: 
+            - ServerSideEncryptionByDefault: 
+                SSEAlgorithm: AES256
+        BucketName: ${self:service}-${self:provider.stage}-data
+        LifecycleConfiguration:
+          Rules:
+            - ExpirationInDays: 90
+              Status: Enabled
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+        VersioningConfiguration:
+          Status: Enabled

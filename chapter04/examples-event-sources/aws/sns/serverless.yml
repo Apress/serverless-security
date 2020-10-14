@@ -1,0 +1,30 @@
+service: eCommerceChapter04ExamplesSns
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+
+functions:
+  function1:
+    handler: src/function1.handler
+    events:
+      # create a new SNS topic
+      - sns:
+          topicName: ordersTopic
+          displayName: Placed orders
+          filterPolicy:
+            # filter for messages with key "source" and specified values
+            source:
+              - online
+              - mobile
+  function2:
+    handler: src/function2.handler
+    events:
+      # use an existing SNS topic ARN
+      - sns:
+          arn: arn:aws:sns:us-east-1:12345678912:salesTopic
+          topicName: salesTopic
+          displayName: Completed sales

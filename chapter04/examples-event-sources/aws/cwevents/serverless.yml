@@ -1,0 +1,31 @@
+service: eCommerceChapter04ExamplesCloudWatchEvents
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+
+functions:
+  function1:
+    handler: src/function1.handler
+    events:
+      - cloudwatchEvent:
+          # trigger on this event source, type and detailed information
+          name: 'cwevent-ec2-state-change-pending'
+          description: 'EC2 instance transitions to pending state'
+          event:
+            source:
+              - 'aws.ec2'
+            detail-type:
+              - 'EC2 Instance State-change Notification'
+            detail:
+              state:
+                - pending
+          # input data to send to function
+          input:
+            key1: value1
+            key2: value2
+            stageParams:
+              stage: dev

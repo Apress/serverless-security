@@ -1,0 +1,11 @@
+{
+  "name": "keyvault-runtime",
+  "version": "1.0.0",
+  "dependencies": {
+    "@azure/identity": "^1.0.2",
+    "@azure/keyvault-secrets": "^4.0.2"
+  },
+  "devDependencies": {
+    "serverless-azure-functions": "^1.0.2"
+  }
+}

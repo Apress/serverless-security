@@ -1,0 +1,30 @@
+service: ecommerce-ch8-secretsmanager-runtime
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  deploymentBucket:
+    serverSideEncryption: AES256
+
+functions:
+  chargeCC:
+    handler: src/functions/chargeCC.handler
+    events:
+      - http:
+          method: post
+          path: chargeCC
+    environment:
+      SECRET_ID: ${self:custom.secretIDs.chargeCC}
+    iamRoleStatements:
+      - Effect: Allow
+        Action: secretsmanager:GetSecretValue
+        Resource: arn:aws:secretsmanager:${self:provider.region}:*:secret:${self:custom.secretIDs.chargeCC}*
+
+plugins:
+  - serverless-iam-roles-per-function
+
+custom:
+  secretIDs:
+    chargeCC: ecommerce/${self:provider.stage}/secret/creditCardApiKey

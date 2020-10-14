@@ -1,0 +1,23 @@
+service: eCommerceChapter04ExamplesCognitoUserPools
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+
+functions:
+  function1:
+    handler: src/function1.handler
+    events:
+      - cognitoUserPool:
+          pool: eCommerceUserPool-${self:provider.stage}-users
+          trigger: PreSignUp
+  function2:
+    handler: src/function2.handler
+    events:
+      - cognitoUserPool:
+          pool: eCommerceUserPool-${self:provider.stage}-admins
+          trigger: CustomMessage
+          existing: true

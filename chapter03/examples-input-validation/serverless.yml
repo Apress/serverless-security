@@ -1,0 +1,70 @@
+service: eCommerceChapter03ExamplesInputValidation
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+  environment:
+    WHITELISTED_IP: 123.456.789.012
+    BUCKET_NAME: ${self:custom.uploadsBucketName}
+
+functions:
+  apigatewayExample:
+    handler: src/apigateway/example.handler
+    events:
+      # API Gateway - GET
+      - http:
+          path: example/{myPathParameter}
+          method: get
+      # API Gateway - GET
+      - http:
+          path: example/{myPathParameter}
+          method: post
+  s3Example:
+    handler: src/s3/example.handler
+    events:
+      # Simple Storage Service
+      - s3:
+          bucket: uploads
+          event: s3:ObjectCreated:Put
+          rules:
+            - suffix: .jpg
+      - s3:
+          bucket: uploads
+          event: s3:ObjectCreated:Put
+          rules:
+            - suffix: .jpeg
+
+resources:
+  Resources:
+    # Create an S3 bucket with globally unique name
+    S3BucketUploads:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.uploadsBucketName}
+        AccessControl: Private
+        CorsConfiguration:
+          CorsRules:
+            - AllowedMethods:
+                - GET
+                - HEAD
+              AllowedOrigins:
+                - "*"
+    # Create the custom IAM permissions for the S3 event to invoke the Lambda function
+    S3ExampleLambdaPermissionUploadsS3:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName:
+          "Fn::GetAtt":
+            - S3ExampleLambdaFunction
+            - Arn
+        Principal: "s3.amazonaws.com"
+        Action: "lambda:invokeFunction"
+        SourceAccount:
+          Ref: AWS::AccountId
+        SourceArn: "arn:aws:s3:::${self:custom.uploadsBucketName}"
+
+custom:
+  uploadsBucketName: ${self:service}-${self:provider.stage}-uploads

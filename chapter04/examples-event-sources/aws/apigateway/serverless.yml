@@ -1,0 +1,74 @@
+service: eCommerceChapter04ExamplesApiGateway
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+
+functions:
+  functionAuthorizer:
+    handler: src/authorizer.handler
+  function1:
+    handler: src/function1.handler
+    events:
+      - http: GET hello/world
+  function2:
+    handler: src/function2.handler
+    events:
+      - http:
+          path: hello/country
+          method: post
+  function3:
+    handler: src/function3.handler
+    events:
+      - http:
+          path: hello/state
+          method: put
+          cors:
+            origins:
+              - http://*.website1.com
+              - https://website2.com
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
+            maxAge: 86400
+            cacheControl: 'max-age=600, s-maxage=600'
+          private: true
+          authorizer:
+            name: functionAuthorizer
+            resultTtlInSeconds: 0
+            identitySource: method.request.header.Auth
+            identityValidationExpression: ^Bearer .*
+            type: token
+  function4:
+    handler: src/function4.handler
+    events:
+      - http:
+          path: hello/city
+          method: post
+          integration: lambda
+          request:
+            template:
+              # A query string of ?key=value in the URL is accessible in the Lambda as event.queryStringParameter
+              application/json: '{ "httpMethod" : "$context.httpMethod", "queryStringParameter" : "$input.params(''key'')" }'
+          response:
+            headers:
+              Content-Type: "'text/plain'"
+              Cache-Control: "'max-age=120'"
+            template: $input.path('$')
+            statusCodes:
+              201:
+                pattern: ''
+              404:
+                pattern: '.*"statusCode":409,.*'
+                template:
+                  application/json: $input.path("$.errorMessage")
+                headers:
+                  Content-Type: "'application/json+hal'"

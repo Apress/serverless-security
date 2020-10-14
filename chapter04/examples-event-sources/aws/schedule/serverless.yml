@@ -1,0 +1,20 @@
+service: eCommerceChapter04ExamplesSchedule
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+
+functions:
+  function1:
+    handler: src/function1.handler
+    events:
+      # cron schedule at midnight every day
+      - schedule: cron(0 0 * * * *)
+  function2:
+    handler: src/function2.handler
+    events:
+      # rate schedule every 10 minutes
+      - schedule: rate(10 minutes)

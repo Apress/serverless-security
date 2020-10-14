@@ -1,0 +1,123 @@
+{
+    "resource": "/example/{myPathParameter}",
+    "path": "/example/testParameter",
+    "httpMethod": "POST",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Cache-Control": "no-cache",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Content-Type": "application/json",
+        "Host": "7mzctr1gua.execute-api.us-east-1.amazonaws.com",
+        "Postman-Token": "5f9c4f81-3f1f-4516-91bf-bd70ee3186a5",
+        "User-Agent": "PostmanRuntime/7.15.2",
+        "Via": "1.1 bd41592b95ad3186fbc9028c3311be93.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "wwV_2P7yNk88L0GgW6-QYHua0LHwumh0aS9XGBrNESz_HtbP1h5UpQ==",
+        "X-Amzn-Trace-Id": "Root=1-5d3b492d-675c76c8825316c096a932e8",
+        "X-Forwarded-For": "123.456.789.012, 123.456.789.012",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "*/*"
+        ],
+        "Accept-Encoding": [
+            "gzip, deflate"
+        ],
+        "Cache-Control": [
+            "no-cache"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-Country": [
+            "US"
+        ],
+        "Content-Type": [
+            "application/json"
+        ],
+        "Host": [
+            "7mzctr1gua.execute-api.us-east-1.amazonaws.com"
+        ],
+        "Postman-Token": [
+            "5f9c4f81-3f1f-4516-91bf-bd70ee3186a5"
+        ],
+        "User-Agent": [
+            "PostmanRuntime/7.15.2"
+        ],
+        "Via": [
+            "1.1 bd41592b95ad3186fbc9028c3311be93.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "wwV_2P7yNk88L0GgW6-QYHua0LHwumh0aS9XGBrNESz_HtbP1h5UpQ=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-5d3b492d-675c76c8825316c096a932e8"
+        ],
+        "X-Forwarded-For": [
+            "123.456.789.012, 123.456.789.012"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": {
+        "myPathParameter": "testParameter"
+    },
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "nu6nbx",
+        "resourcePath": "/example/{myPathParameter}",
+        "httpMethod": "POST",
+        "extendedRequestId": "dchfIEPIIAMFu_g=",
+        "requestTime": "26/Jul/2019:18:40:45 +0000",
+        "path": "/dev/example/testParameter",
+        "accountId": "123456789012",
+        "protocol": "HTTP/1.1",
+        "stage": "dev",
+        "domainPrefix": "7mzctr1gua",
+        "requestTimeEpoch": 1564166445613,
+        "requestId": "e11bbe5e-afd4-11e9-b558-bfbcd07e9846",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "123.456.789.012",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "PostmanRuntime/7.15.2",
+            "user": null
+        },
+        "domainName": "7mzctr1gua.execute-api.us-east-1.amazonaws.com",
+        "apiId": "7mzctr1gua"
+    },
+    "body": "{\n\t\"bodyKey1\": \"bodyValue1\",\n\t\"bodyKey2\": \"bodyValue2\"\n}",
+    "isBase64Encoded": false
+}

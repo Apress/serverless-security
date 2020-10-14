@@ -1,0 +1,89 @@
+{
+    "resource": "/example/{myPathParameter}",
+    "path": "/example/testParameter",
+    "httpMethod": "GET",
+    "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.9",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "dnt": "1",
+        "Host": "7mzctr1gua.execute-api.us-east-1.amazonaws.com",
+        "upgrade-insecure-requests": "1",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36",
+        "Via": "2.0 8fb273b390f064c411944b3126eb0eb6.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "rmFC2hv3yjifI6n5JTeF2znGxJq5PsY1_308L1Qv0xscbo2oIWAU6g==",
+        "X-Amzn-Trace-Id": "Root=1-5d3b1e42-302d4d8228476ad4de5c3621",
+        "X-Forwarded-For": "123.456.789.012, 123.456.789.012",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "Accept": ["text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3"],
+        "Accept-Encoding": ["gzip, deflate, br"],
+        "Accept-Language": ["en-US,en;q=0.9"],
+        "CloudFront-Forwarded-Proto": ["https"],
+        "CloudFront-Is-Desktop-Viewer": ["true"],
+        "CloudFront-Is-Mobile-Viewer": ["false"],
+        "CloudFront-Is-SmartTV-Viewer": ["false"],
+        "CloudFront-Is-Tablet-Viewer": ["false"],
+        "CloudFront-Viewer-Country": ["US"],
+        "dnt": ["1"],
+        "Host": ["7mzctr1gua.execute-api.us-east-1.amazonaws.com"],
+        "upgrade-insecure-requests": ["1"],
+        "User-Agent": ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36"],
+        "Via": ["2.0 8fb273b390f064c411944b3126eb0eb6.cloudfront.net (CloudFront)"],
+        "X-Amz-Cf-Id": ["rmFC2hv3yjifI6n5JTeF2znGxJq5PsY1_308L1Qv0xscbo2oIWAU6g=="],
+        "X-Amzn-Trace-Id": ["Root=1-5d3b1e42-302d4d8228476ad4de5c3621"],
+        "X-Forwarded-For": ["123.456.789.012, 123.456.789.012"],
+        "X-Forwarded-Port": ["443"],
+        "X-Forwarded-Proto": ["https"]
+    },
+    "queryStringParameters": {
+        "testKey": "testValue2"
+    },
+    "multiValueQueryStringParameters": {
+        "testKey": ["testValue1", "testValue2"]
+    },
+    "pathParameters": {
+        "myPathParameter": "testParameter"
+    },
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "nu6nbx",
+        "resourcePath": "/example/{myPathParameter}",
+        "httpMethod": "GET",
+        "extendedRequestId": "dcGqVH6WIAMF8rQ=",
+        "requestTime": "26/Jul/2019:15:37:38 +0000",
+        "path": "/dev/example/testParameter",
+        "accountId": "123456789012",
+        "protocol": "HTTP/1.1",
+        "stage": "dev",
+        "domainPrefix": "7mzctr1gua",
+        "requestTimeEpoch": 1564155458133,
+        "requestId": "4c0f58ab-afbb-11e9-b733-970484cd42fc",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "123.456.789.012",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36",
+            "user": null
+        },
+        "domainName": "7mzctr1gua.execute-api.us-east-1.amazonaws.com",
+        "apiId": "7mzctr1gua"
+    },
+    "body": null,
+    "isBase64Encoded": false
+}

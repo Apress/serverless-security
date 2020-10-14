@@ -1,0 +1,32 @@
+service: eCommerceChapter04ExamplesEventBridge
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  memorySize: 1024
+
+functions:
+  function1:
+    handler: src/function1.handler
+    events:
+      # AWS service event from the default event bus
+      - eventBridge:
+          pattern:
+            source:
+              - aws.signin
+            detail-type:
+              - AWS Console Sign In via CloudTrail
+            detail:
+              eventSource:
+                - signin.amazonaws.com
+  function2:
+    handler: src/function2.handler
+    events:
+      # create new custom event bus for a custom SaaS application
+      - eventBridge:
+          eventBus: custom-saas-app-events
+          pattern:
+            source:
+              - saas.customapp.com

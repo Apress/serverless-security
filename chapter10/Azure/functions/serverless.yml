@@ -1,0 +1,24 @@
+
+service: ssbook-ch10-functions
+
+provider:
+  name: azure
+  region: West US 2
+  runtime: nodejs10.x
+
+plugins:
+  - serverless-azure-functions
+
+package:
+  exclude:
+    - local.settings.json
+
+functions:
+  myFunction:
+    handler: myFunction.handler
+    events:
+      - http: true
+        x-azure-settings:
+          methods:
+            - GET
+          authLevel: anonymous

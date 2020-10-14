@@ -1,0 +1,13 @@
+{
+  "Name": "Contributor - Base",
+  "IsCustom": true,
+  "Description": "Manage deployments; no resources defined.",
+  "Actions": [
+    "Microsoft.Authorization/*/read",
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.Resources/subscriptions/resourceGroups/read",
+    "Microsoft.Support/*"
+  ],
+  "NotActions": [],
+  "AssignableScopes": ["/subscriptions/a234aaa3-aa3a-4aa1-aa54-3aa9282fa273"]
+}

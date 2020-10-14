@@ -1,0 +1,30 @@
+service: ecommerce-ch8-ssm-runtime-secure
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  deploymentBucket:
+    serverSideEncryption: AES256
+
+functions:
+  chargeCC:
+    handler: src/functions/chargeCC.handler
+    events:
+      - http:
+          method: post
+          path: chargeCC
+    environment:
+      PARAMETER_NAME: ${self:custom.parameterNames.chargeCC}
+    iamRoleStatements:
+      - Effect: Allow
+        Action: ssm:GetParameter
+        Resource: arn:aws:ssm:${self:provider.region}:*:parameter${self:custom.parameterNames.chargeCC}
+
+plugins:
+  - serverless-iam-roles-per-function
+
+custom:
+  parameterNames:
+    chargeCC: /ecommerce/${self:provider.stage}/secret/creditCardApiKey
